@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Catalogue Explorer – Electrotech Automation</title>
+<meta name="description" content="Browse our complete catalog of 2000+ industrial automation, PLC, electrical, motion control, pneumatic, and CNC components.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23cc2121'/%3E%3Cdefs%3E%3Cg id='gear'%3E%3Ccircle cx='100' cy='100' r='62'/%3E%3Crect x='86' y='24' width='28' height='152' rx='4'/%3E%3Crect x='86' y='24' width='28' height='152' rx='4' transform='rotate(45 100 100)'/%3E%3Crect x='86' y='24' width='28' height='152' rx='4' transform='rotate(90 100 100)'/%3E%3Crect x='86' y='24' width='28' height='152' rx='4' transform='rotate(135 100 100)'/%3E%3C/g%3E%3CclipPath id='top-clip'%3E%3Crect x='0' y='0' width='200' height='100'/%3E%3C/clipPath%3E%3CclipPath id='bottom-clip'%3E%3Crect x='0' y='100' width='200' height='100'/%3E%3C/clipPath%3E%3C/defs%3E%3Cuse href='%23gear' fill='%23000000' stroke='%23ffffff' stroke-width='5' clip-path='url(%23top-clip)'/%3E%3Cuse href='%23gear' fill='%23ffffff' stroke='%23cc2121' stroke-width='5' clip-path='url(%23bottom-clip)'/%3E%3Cline x1='15' y1='100' x2='185' y2='100' stroke='%23000000' stroke-width='1.5' opacity='0.1'/%3E%3Cpath d='M 56,100 A 44,44 0 0,1 144,100 Z' fill='%231b8a36' stroke='%23ffffff' stroke-width='3'/%3E%3Cpath d='M 144,100 A 44,44 0 0,1 56,100 Z' fill='%23ffffff' stroke='%23c91a1a' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='44' fill='none' stroke='%23000000' stroke-width='2'/%3E%3Crect x='86' y='86' width='28' height='28' rx='2' fill='%23000000' stroke='%23ffffff' stroke-width='1.5'/%3E%3Cpath d='M 86,93 L 55,93' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='55' cy='93' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 86,100 L 45,100' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='45' cy='100' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 86,107 L 55,107' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='55' cy='107' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 114,93 L 145,93' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='145' cy='93' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 114,100 L 155,100' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='155' cy='100' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 114,107 L 145,107' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='145' cy='107' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 94,86 L 94,62' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='94' cy='62' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 100,86 L 100,55' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='55' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 106,86 L 106,62' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='106' cy='62' r='3.5' fill='%231b8a36'/%3E%3Cpath d='M 100,114 L 100,150' stroke='%231b8a36' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='150' r='3.5' fill='%231b8a36'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Roboto+Slab:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #050816;
+  --navy2: #080d1f;
+  --blue: #00BFFF;
+  --blue-dim: #0090cc;
+  --blue-glow: rgba(0,191,255,0.25);
+  --blue-faint: rgba(0,191,255,0.08);
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.55);
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(0,191,255,0.18);
+  --glass: rgba(5,8,22,0.7);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:#050816;
+  color:#fff;
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4,h5,.nav-logo,.brand-name-electrotech,.brand-name-automation{font-family:'Syne',sans-serif;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:#050816;}
+::-webkit-scrollbar-thumb{background:#00BFFF;border-radius:2px;}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(5,8,22,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+.logo-svg-container {
+  width: 42px;
+  height: 42px;
+}
+.logo-svg {
+  width: 100%;
+  height: 100%;
+  animation: spin 24s linear infinite;
+}
+.logo-svg-container:hover .logo-svg {
+  animation-duration: 4s;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.logo-text-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.brand-name-electrotech {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.brand-name-automation {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 5.5px;
+  color: var(--blue);
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  position: relative;
+  font-family: 'Syne', sans-serif;
+}
+.nav-links a:hover {
+  color: #fff;
+}
+.nav-links a.active {
+  color: #fff;
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--blue);
+  box-shadow: 0 0 8px var(--blue);
+}
+.nav-cta {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: #fff;
+  padding: 0.65rem 1.3rem;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.nav-cta:hover {
+  background: var(--blue);
+  color: var(--navy);
+  border-color: var(--blue);
+  box-shadow: 0 0 15px rgba(0,191,255,0.35);
+}
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Page content */
+.explore-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 76px);
+}
+
+/* Sidebar styling */
+.catalog-sidebar {
+  width: 320px;
+  border-right: 1px solid rgba(0, 191, 255, 0.15);
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+.catalog-search-wrapper {
+  margin-bottom: 1.5rem;
+}
+.catalog-search-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  transition: all 0.25s;
+}
+.catalog-search-input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.25);
+}
+.catalog-cat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+.catalog-cat-item {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.catalog-cat-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+}
+.catalog-cat-item.active {
+  background: rgba(0, 191, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(0, 191, 255, 0.22);
+  font-weight: 600;
+}
+.catalog-cat-badge {
+  font-size: 0.72rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  color: var(--blue);
+  border: 1px solid rgba(0, 191, 255, 0.15);
+}
+
+/* Main Area */
+.catalog-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2.2rem;
+  background: rgba(5, 8, 22, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+.catalog-main-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  padding-bottom: 1.2rem;
+}
+.catalog-main-title {
+  font-size: 1.6rem;
+  font-family: 'Syne', sans-serif;
+  margin-bottom: 0.6rem;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.catalog-main-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.catalog-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.catalog-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 191, 255, 0.28);
+  box-shadow: 0 5px 25px rgba(0, 191, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+.catalog-card-image-box {
+  width: 100%;
+  aspect-ratio: 1;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+.catalog-card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.catalog-card:hover .catalog-card-image-box img {
+  transform: scale(1.08);
+}
+.catalog-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.catalog-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: #fff;
+  font-weight: 600;
+}
+.catalog-card-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+.catalog-card-btn {
+  width: 100%;
+  background: rgba(0, 191, 255, 0.08);
+  border: 1px solid rgba(0, 191, 255, 0.22);
+  border-radius: 6px;
+  color: var(--blue);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.55rem 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.catalog-card-btn:hover {
+  background: var(--blue);
+  color: var(--navy);
+  box-shadow: 0 0 10px rgba(0, 191, 255, 0.35);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  nav {
+    padding: 1rem 5%;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 73px;
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - 73px);
+    background: rgba(5,8,22,0.96);
+    backdrop-filter: blur(15px);
+    padding: 2rem;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    border-left: 1px solid rgba(255,255,255,0.05);
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .nav-links.active {
+    right: 0;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .nav-cta, #userProfileHeader {
+    display: none;
+  }
+  .explore-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .catalog-sidebar {
+    width: 100%;
+    height: 250px;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.15);
+  }
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-logo" href="index.html">
+    <div class="logo-svg-container">
+      <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" fill="#cc2121" />
+        <defs>
+          <g id="gear">
+            <circle cx="100" cy="100" r="62" />
+            <rect x="86" y="24" width="28" height="152" rx="4" />
+            <rect x="86" y="24" width="28" height="152" rx="4" transform="rotate(45 100 100)" />
+            <rect x="86" y="24" width="28" height="152" rx="4" transform="rotate(90 100 100)" />
+            <rect x="86" y="24" width="28" height="152" rx="4" transform="rotate(135 100 100)" />
+          </g>
+          <clipPath id="top-clip"><rect x="0" y="0" width="200" height="100" /></clipPath>
+          <clipPath id="bottom-clip"><rect x="0" y="100" width="200" height="100" /></clipPath>
+        </defs>
+        <circle cx="100" cy="100" r="62" fill="none" stroke="#ffffff" stroke-width="5" />
+        <use href="#gear" fill="#000000" stroke="#ffffff" stroke-width="5" clip-path="url(#top-clip)" />
+        <use href="#gear" fill="#ffffff" stroke="#cc2121" stroke-width="5" clip-path="url(#bottom-clip)" />
+        <line x1="15" y1="100" x2="185" y2="100" stroke="#000000" stroke-width="1.5" opacity="0.1" />
+        <path d="M 56,100 A 44,44 0 0,1 144,100 Z" fill="#1b8a36" stroke="#ffffff" stroke-width="3" />
+        <path d="M 144,100 A 44,44 0 0,1 56,100 Z" fill="#ffffff" stroke="#c91a1a" stroke-width="3" />
+        <circle cx="100" cy="100" r="44" fill="none" stroke="#000000" stroke-width="2" />
+        <rect x="86" y="86" width="28" height="28" rx="2" fill="#000000" stroke="#ffffff" stroke-width="1.5" />
+      </svg>
+    </div>
+    <div class="logo-text-container">
+      <span class="brand-name-electrotech">ELECTROTECH</span>
+      <span class="brand-name-automation">AUTOMATION</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#hero">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Solutions</a></li>
+    <li><a href="index.html#products" class="active">Products</a></li>
+    <li><a href="index.html#industries">Industries</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div id="userProfileHeader" style="display: flex; align-items: center; gap: 0.8rem; margin-right: 1.5rem; font-size: 0.8rem; font-family: 'Syne', sans-serif; display: none;">
+    <span style="color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 0.3rem;">
+      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 6px var(--blue);"></span>
+      <span id="headerUsername">admin</span> (<span id="headerRole" style="color: var(--blue); font-weight: bold;">ADMIN</span>)
+    </span>
+  </div>
+  <a class="nav-cta" href="index.html#contact">Request Quote →</a>
+  <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" id="hamburgerIcon">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+</nav>
+
+<div class="explore-container">
+  <div class="catalog-sidebar">
+    <div class="catalog-search-wrapper">
+      <input type="text" id="catalogSearch" class="catalog-search-input" placeholder="Search categories..." oninput="filterCatalogCategories()">
+    </div>
+    <ul id="catalogCatList" class="catalog-cat-list">
+      <!-- Loaded dynamically -->
+    </ul>
+  </div>
+  <div class="catalog-main">
+    <div class="catalog-main-header">
+      <h4 id="catalogMainTitle" class="catalog-main-title">Category</h4>
+      <p id="catalogMainDesc" class="catalog-main-desc">Description</p>
+    </div>
+    <div id="catalogGrid" class="catalog-grid">
+      <!-- Loaded dynamically -->
+    </div>
+  </div>
+</div>
+
+<script>
+const catalogData = {"001": [0, 1], "002": [2, 3, 4], "004": [5, 6, 7], "005": [8, 9, 10, 11, 12, 13], "006": [14, 15, 16, 17, 18, 19], "007": [20, 21, 22, 23, 24, 25], "008": [26, 27, 28, 29, 30], "009": [31, 32], "010": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43], "011": [44, 45, 46, 47, 48, 49, 50, 51, 52, 53], "012": [54, 55, 56, 57, 58, 59, 60, 61, 62, 63], "013": [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75], "014": [76, 77, 78, 79, 80, 81], "015": [82, 83, 84, 85, 86, 87, 88, 89], "016": [90, 91, 92, 93, 94, 95], "017": [96, 97, 98, 99, 100, 101], "018": [102, 103, 104, 105, 106, 107], "019": [108, 109, 110], "020": [111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135], "021": [136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148], "022": [149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164], "023": [165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180], "024": [181, 182, 183, 184, 185, 186, 187], "025": [188, 189, 190, 191, 192, 193], "026": [194, 195, 196, 197, 198, 199], "027": [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210], "028": [211, 212, 213, 214, 215, 216, 217, 218, 219], "029": [220, 221, 222, 223, 224, 225, 226, 227, 228, 229], "030": [230, 231, 232, 233, 234, 235, 236, 237, 238, 239], "031": [240, 241, 242, 243, 244, 245, 246, 247, 248], "032": [249, 250, 251, 252, 253, 254, 255], "033": [256, 257, 258, 259, 260, 261, 262, 263, 264, 265], "034": [266, 267, 268, 269, 270, 271, 272], "035": [273, 274, 275, 276, 277, 278, 279], "036": [280, 281, 282, 283, 284, 285, 286, 287, 288], "037": [289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301], "038": [302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312], "039": [313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330], "040": [331, 332, 333, 334, 335, 336], "041": [337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352], "042": [353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364], "043": [365, 366, 367, 368, 369, 370], "044": [371, 372, 373], "045": [374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384], "046": [385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404], "047": [405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436], "048": [437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450], "049": [451, 452, 453, 454, 455, 456, 457, 458, 459, 460], "050": [461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471], "051": [472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486], "052": [487, 488, 489, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502], "053": [503, 504, 505, 506], "054": [507, 508, 509], "055": [510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535], "056": [536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556], "057": [557, 558, 559], "058": [560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 579, 580, 581, 582, 583], "059": [584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598, 599, 600, 601, 602, 603], "060": [604, 605, 606, 607, 608, 609, 610, 611, 612, 613, 614, 615], "061": [616, 617, 618, 619, 620, 621, 622, 623, 624], "062": [625, 626, 627, 628, 629, 630, 631, 632, 633], "063": [634, 635, 636, 637, 638, 639, 640, 641, 642], "064": [643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653], "065": [654, 655, 656], "066": [657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667, 668], "067": [669, 670, 671, 672, 673, 674, 675, 676, 677, 678, 679, 680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691], "068": [692, 693, 694, 695, 696, 697, 698, 699], "069": [700, 701, 702, 703, 704, 705, 706], "070": [707, 708, 709, 710, 711], "071": [712, 713, 714, 715, 716, 717], "072": [718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729], "073": [730, 731, 732, 733, 734, 735, 736, 737, 738, 739, 740, 741, 742], "074": [743, 744, 745, 746, 747, 748], "075": [749, 750, 751, 752, 753, 754, 755], "076": [756, 757, 758, 759, 760, 761], "077": [762, 763, 764, 765, 766, 767, 768, 769, 770], "078": [771, 772, 773, 774, 775, 776], "079": [777, 778, 779, 780, 781, 782], "080": [783]};
+
+const categoryNames = {
+  "001": "Industrial Automation Products",
+  "002": "Industrial Electrical Products",
+  "004": "Industrial Sensors & Vision Systems",
+  "005": "Motion Control Systems & Servos",
+  "006": "Pneumatic Valves & Actuators",
+  "007": "CNC Controllers & MPG Pendants",
+  "008": "Cooling Systems & Cabinet Thermal",
+  "009": "Fiber Laser Generators & CW Sources",
+  "010": "Laser Welding Cabinets & Enclosures",
+  "011": "Industrial Ethernet & Bus Couplers",
+  "012": "Terminal Blocks & DIN Rails",
+  "013": "Switching Power Supplies",
+  "014": "Safety Relays & Barrier Modules",
+  "015": "Solid State Relays (SSRs)",
+  "016": "Inductive Proximity Sensors",
+  "017": "Photoelectric Sensors",
+  "018": "Rotary Encoders",
+  "019": "Thermocouples & RTD Probes",
+  "020": "Variable Frequency Drives (VFDs)",
+  "021": "Stepper Motors & Drivers",
+  "022": "Linear Guide Rails",
+  "023": "Ball Screws & Support Units",
+  "024": "Pneumatic Cylinders",
+  "025": "Solenoid Valves",
+  "026": "Air Filters & Regulators (FRL)",
+  "027": "One-Touch Fittings & Tubing",
+  "028": "Vacuum Ejectors & Suction Cups",
+  "029": "Aluminum Extrusions & Brackets",
+  "030": "Flexible Cable Carriers (Drag Chains)",
+  "031": "Heavy-Duty Connectors",
+  "032": "M12 Sensor Cables & Connectors",
+  "033": "Cabinet Fan & Grill Units",
+  "034": "Laser Cutting Heads",
+  "035": "Laser Nozzles & Holders",
+  "036": "Laser Protective Windows",
+  "037": "Laser Focus & Collimator Lenses",
+  "038": "Laser Chiller Hose Fittings",
+  "039": "CNC Spindle Motors",
+  "040": "Collets & Chucks (ER Series)",
+  "041": "Tool Setters & Z-Axis Probes",
+  "042": "Limit & Micro Switches",
+  "043": "Flexible Shaft Couplings",
+  "044": "DIN Rail Power Distribution",
+  "045": "Proximity Switch Accessories",
+  "046": "Process Indicators & Displays",
+  "047": "Industrial Pushbuttons & Indicators",
+  "048": "Control Panel Accessories",
+  "049": "Pressure Sensors & Transmitters",
+  "050": "Flow Meters & Switches",
+  "051": "Laser Optic Mirror Mounts",
+  "052": "Fiber Optic Patch Cables",
+  "053": "Laser Welding Nozzles",
+  "054": "Laser Welding Wire Feeders",
+  "055": "Precision Planetary Gearboxes",
+  "056": "AC Induction Motors",
+  "057": "Stepper Motor Controllers",
+  "058": "Linear Shafts & Shaft Supports",
+  "059": "Lead Screws & Brass Nuts",
+  "060": "CNC Spindle Inverters",
+  "061": "Cooling & Lubrication Pumps",
+  "062": "Machine Tool Workholding",
+  "063": "Spindle Mounting Brackets",
+  "064": "Machine Levelling Feet",
+  "065": "Industrial Safety Enclosures",
+  "066": "Sensor Distribution Boxes",
+  "067": "Mains Line Filters",
+  "068": "Hydraulic Solenoid Valves",
+  "069": "Hydraulic Fittings & Hoses",
+  "070": "Pressure Gauges & Manometers",
+  "071": "Laser Safety Goggles",
+  "072": "Laser Cleanroom Consumables",
+  "073": "Cable Glands & Entry Systems",
+  "074": "DIN Rail Relay Modules",
+  "075": "Industrial Signal Towers",
+  "076": "Panel Meters & Counters",
+  "077": "Fiber Laser Protective Windows",
+  "078": "Handheld Laser Focusing Optics",
+  "079": "Laser Consumable Nozzles",
+  "080": "Laser Focus Optics Consumables"
+};
+
+const categoryDescriptions = {
+  "001": "Programmable logic controllers, human-machine interfaces, and SCADA process controllers.",
+  "002": "Low-voltage switchgear, molded case circuit breakers, line filters, and power units.",
+  "004": "Inductive proximity, optoelectronic, limit switches, and safety light curtains.",
+  "005": "High-torque AC servo motors, encoder units, and precision digital drives.",
+  "006": "Air solenoid valves, industrial cylinders, FRL assemblies, and fittings.",
+  "007": "Industrial CNC control cards, manual pulse generator pendants, and handwheels.",
+  "008": "Thermoelectric air conditioners, high-speed axial fans, and cooling panels.",
+  "009": "High-efficiency continuous wave laser resonators for metal fabrication.",
+  "010": "Handheld laser welding work stations, wire feed systems, and cooling cabinets.",
+  "011": "EtherCAT, PROFINET, and Modbus bus couplers, gateway modules, and Ethernet hubs.",
+  "012": "Screwless terminal blocks, ground terminals, fuse terminal blocks, and steel DIN rails.",
+  "013": "DIN rail mounted AC/DC industrial switching power supplies (24V, 12V, 5V options).",
+  "014": "Dual-channel safety relays, optocoupler isolation barriers, and spark suppressors.",
+  "015": "Single-phase and three-phase AC solid state relays with integrated heatsinks.",
+  "016": "M12 and M18 cylindrical inductive sensors for non-contact metallic part detection.",
+  "017": "Retro-reflective, diffuse, and thru-beam photoelectric sensors with background suppression.",
+  "018": "Incremental and absolute optical rotary encoders for precision angular speed feedback.",
+  "019": "Type-K thermocouples, Pt100 RTD temperature sensors, and thermowell sheaths.",
+  "020": "AC motor variable speed controllers, vector control inverters, and keypads.",
+  "021": "NEMA 17, 23, and 34 high-torque stepper motors with microstepping drive modules.",
+  "022": "Hardened steel profile linear guides and matching ball carriage blocks.",
+  "023": "Precision rolled ball screws, recirculating ball nuts, and end support bearing blocks (BK/BF).",
+  "024": "Double-acting profile cylinders, compact cylinders, and guide cylinders.",
+  "025": "5/2 and 3/2-way air solenoid valves, manifold base blocks, and coils.",
+  "026": "Air filter-regulator-lubricator modular units, auto-drain units, and pressure gauges.",
+  "027": "Pneumatic push-in fittings, elbow fittings, speed controllers, and polyurethane air tubes.",
+  "028": "Multi-stage vacuum generators, suction pads, vacuum switches, and filters.",
+  "029": "T-slot aluminum profiles (2020, 3030, 4040), corner brackets, and T-nuts.",
+  "030": "Bridge-type and closed plastic cable drag chains for dynamic wire management.",
+  "031": "Multi-pin rectangular industrial connectors, protective hoods, and insert modules.",
+  "032": "M8/M12 circular plug connectors, molded field junction cables, and distribution boxes.",
+  "033": "Enclosure ventilation cooling fans, finger guards, and filter grills.",
+  "034": "Fiber laser autofocus and manual focus cutting heads with capacitive sensors.",
+  "035": "Single and double layer copper nozzles, ceramic nozzle holders, and lock rings.",
+  "036": "High-transmittance fused silica protective optic windows for fiber lasers.",
+  "037": "AR-coated optic lenses for fiber laser collimating and focusing heads.",
+  "038": "Quick-connect water hose couplings, silicone hoses, and flow control valves.",
+  "039": "Water-cooled and air-cooled high-speed spindle motors for CNC routing.",
+  "040": "ER11, ER16, ER20, and ER32 spring collets, collet nuts, and spanners.",
+  "041": "CNC automatic tool setting gauges, touch plates, and Z-axis height sensors.",
+  "042": "Roller lever limit switches, plunger limit switches, and safety interlocks.",
+  "043": "Jaw couplings, diaphragm couplings, and bellows couplings for motor shafts.",
+  "044": "Busbar blocks, power distribution blocks, and modular fuse holders.",
+  "045": "M12/M18 sensor mounting brackets, target plates, and locknuts.",
+  "046": "Panel-mounted digital indicators for voltage, current, and temperature display.",
+  "047": "22mm pilot lights, emergency stop pushbuttons, selector switches, and contact blocks.",
+  "048": "DIN rail end brackets, wire duct combs, wire markers, and spiral wrap bands.",
+  "049": "Digital pressure switches, vacuum sensors, and analog pressure transmitters.",
+  "050": "Inline paddlewheel flow meters, thermal flow switches, and liquid sensors.",
+  "051": "Kinematic mirror mounts, beam expander mounts, and laser path aligners.",
+  "052": "Industrial armored fiber patch cables, optical couplers, and termination boxes.",
+  "053": "Handheld laser welding wire-feed copper nozzles, tip cleaners, and focus tubes.",
+  "054": "Automatic motor-driven dual-roller welding wire feeder cabinets and guide tubes.",
+  "055": "Precision Planetary Gearboxes, low-backlash servo planetary gearboxes for speed reduction.",
+  "056": "AC induction motors, standard 3-phase asynchronous AC squirrel-cage motors.",
+  "057": "Stepper motor controllers, standalone programmable indexer modules.",
+  "058": "Linear Shafts & Shaft Supports, hardened and ground linear shafting.",
+  "059": "Lead Screws & Brass Nuts, trapezoidal lead screws, anti-backlash brass lead screw nuts.",
+  "060": "CNC Spindle Inverters, high-frequency VFDs optimized for CNC spindle control.",
+  "061": "Cooling & Lubrication Pumps, submersible coolant pumps and automatic oil distributors.",
+  "062": "Machine Tool Workholding, CNC milling vices, T-slot clamping kits, and step blocks.",
+  "063": "Spindle Mounting Brackets, cast aluminum brackets for CNC machine gantries.",
+  "064": "Machine Levelling Feet, heavy-duty levelling mounts, and vibration damping pads.",
+  "065": "Industrial Safety Enclosures, sheet metal control panels and IP65 steel boxes.",
+  "066": "Sensor Distribution Boxes, multi-port M12 sensor actuator distribution blocks.",
+  "067": "Mains Line Filters, single and three-phase line noise filters for VFD EMC protection.",
+  "068": "Hydraulic Solenoid Valves, directional hydraulic spool valves and subplate blocks.",
+  "069": "Hydraulic Fittings & Hoses, high-pressure adaptors, crimped rubber hoses.",
+  "070": "Pressure Gauges & Manometers, Bourdon tube gauges, glycerine-filled and digital.",
+  "071": "Laser Safety Goggles, fused silica fiber laser safety glasses with broad absorption.",
+  "072": "Laser Cleanroom Consumables, lint-free lens cleaning wipes, optical grade swabs.",
+  "073": "Cable Glands & Entry Systems, IP68 nylon and nickel-plated brass glands.",
+  "074": "DIN Rail Relay Modules, modular slim relay cards with opto-isolation.",
+  "075": "Industrial Signal Towers, stackable LED signal towers and buzzer alarms.",
+  "076": "Panel Meters & Counters, panel-mounted digital cycle counters and hour meters.",
+  "077": "Fiber Laser Protective Windows, focal lens shield quartz slides and protectors.",
+  "078": "Handheld Laser Focusing Optics, focal collimators and focus mirrors.",
+  "079": "Laser Consumable Nozzles, single copper nozzles for laser cutting.",
+  "080": "Laser Focus Optics Consumables, lens holders, spacer rings, and seal rings."
+};
+
+let activeCatalogCategory = "001";
+
+// Mobile nav menu logic
+function toggleMobileMenu() {
+  const links = document.getElementById("navLinks");
+  const icon = document.getElementById("hamburgerIcon");
+  if (links) {
+    links.classList.toggle("active");
+    if (links.classList.contains("active")) {
+      icon.innerHTML = `<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>`;
+    } else {
+      icon.innerHTML = `<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>`;
+    }
+  }
+}
+
+function renderCatalogCategories() {
+  const catList = document.getElementById("catalogCatList");
+  if (!catList) return;
+  catList.innerHTML = "";
+  
+  const searchVal = document.getElementById("catalogSearch").value.toLowerCase();
+  
+  Object.keys(catalogData).forEach(cat => {
+    const defaultName = `Industrial Spares (Cat #${cat})`;
+    const name = categoryNames[cat] || defaultName;
+    
+    if (searchVal && !name.toLowerCase().includes(searchVal) && !cat.includes(searchVal)) {
+      return;
+    }
+    
+    const count = catalogData[cat].length;
+    const li = document.createElement("li");
+    li.className = "catalog-cat-item" + (cat === activeCatalogCategory ? " active" : "");
+    li.innerHTML = `<span>${name}</span><span class="catalog-cat-badge">${count}</span>`;
+    li.onclick = () => selectCatalogCategory(cat);
+    catList.appendChild(li);
+  });
+}
+
+function selectCatalogCategory(cat) {
+  activeCatalogCategory = cat;
+  
+  // Highlight in sidebar
+  const items = document.querySelectorAll(".catalog-cat-item");
+  const catKeys = Object.keys(catalogData);
+  
+  const searchVal = document.getElementById("catalogSearch").value.toLowerCase();
+  const filteredKeys = catKeys.filter(k => {
+    const name = categoryNames[k] || `Industrial Spares (Cat #${k})`;
+    return !searchVal || name.toLowerCase().includes(searchVal) || k.includes(searchVal);
+  });
+  
+  const idx = filteredKeys.indexOf(cat);
+  items.forEach(el => el.classList.remove("active"));
+  if (idx !== -1 && items[idx]) {
+    items[idx].classList.add("active");
+  }
+  
+  // Update header and description
+  const defaultName = `Industrial Components & Spares #${cat}`;
+  const name = categoryNames[cat] || defaultName;
+  const desc = categoryDescriptions[cat] || "A selection of components, spare parts, and accessories matching this product group.";
+  
+  document.getElementById("catalogMainTitle").textContent = name;
+  document.getElementById("catalogMainDesc").textContent = desc;
+  
+  // Render grid
+  const grid = document.getElementById("catalogGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
+  
+  const ids = catalogData[cat];
+  ids.forEach(id => {
+    const paddedId = String(id).padStart(4, "0");
+    const filename = `product_${cat}_${paddedId}.jpg`;
+    const filepath = `catalogue_images/${filename}`;
+    
+    const card = document.createElement("div");
+    card.className = "catalog-card";
+    card.innerHTML = `
+      <div class="catalog-card-image-box">
+        <img src="${filepath}" alt="Part #${paddedId}" onerror="this.src='assets/products/industrial_plc.jpg';">
+      </div>
+      <div class="catalog-card-body">
+        <div class="catalog-card-title">Part #${paddedId}</div>
+        <div class="catalog-card-desc">Industrial grade component matching automation catalog spec group ${cat}.</div>
+        <button class="catalog-card-btn" onclick="inquireAboutPart('${paddedId}', '${cat}')">Request Quote</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  
+  // Push state to URL without reloading to allow back navigation/sharing
+  history.replaceState(null, "", `?cat=${cat}`);
+}
+
+function filterCatalogCategories() {
+  renderCatalogCategories();
+}
+
+function inquireAboutPart(partId, cat) {
+  // Redirect back to landing page contact form with parameters
+  window.location.href = `index.html?part=${partId}&cat=${cat}#contact`;
+}
+
+// Load query params on startup
+document.addEventListener("DOMContentLoaded", () => {
+  // Parse session
+  const savedUser = localStorage.getItem("currentUser");
+  if (savedUser) {
+    try {
+      const user = JSON.parse(savedUser);
+      document.getElementById("headerUsername").textContent = user.username;
+      document.getElementById("headerRole").textContent = user.role;
+      document.getElementById("userProfileHeader").style.display = "flex";
+    } catch (e) {}
+  }
+  
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get("cat") || "001";
+  
+  if (catalogData[catParam]) {
+    activeCatalogCategory = catParam;
+  }
+  
+  renderCatalogCategories();
+  selectCatalogCategory(activeCatalogCategory);
+});
+</script>
+
+</body>
+</html>
