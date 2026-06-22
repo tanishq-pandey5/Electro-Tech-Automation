@@ -95,7 +95,7 @@ state = {
 state_lock = threading.RLock()
 clients_connected = 0
 server_start_time = time.time()
-db_name = "scada.db"
+db_name = os.getenv("DATABASE_PATH", "scada.db")
 
 # Database Interface
 
