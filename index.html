@@ -3845,7 +3845,7 @@ function connectTelemetrySSE() {
       eventSource.close();
       initLocalSimulation();
     }
-  }, 2200);
+  }, 7000);
 
   eventSource.onopen = () => {
     clearTimeout(connectionTimeout);
@@ -3869,10 +3869,12 @@ function connectTelemetrySSE() {
   };
 
   eventSource.onerror = (err) => {
-    clearTimeout(connectionTimeout);
-    console.warn("SSE stream error. Attempting local telemetry fallback...");
-    eventSource.close();
-    initLocalSimulation();
+    if (eventSource.readyState === EventSource.CLOSED) {
+      console.warn("SSE connection closed permanently. Attempting fallback...");
+      clearTimeout(connectionTimeout);
+      eventSource.close();
+      initLocalSimulation();
+    }
   };
 }
 
