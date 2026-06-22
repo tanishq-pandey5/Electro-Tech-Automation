@@ -1,0 +1,1 @@
+# Zero-dependency project. No external packages required.
