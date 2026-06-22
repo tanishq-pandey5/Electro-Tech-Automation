@@ -1670,8 +1670,8 @@ footer{
     <li class="mobile-only-profile">
       <div id="mobileUserProfile" style="display: flex; align-items: center; gap: 0.8rem; margin-top: 1rem; font-size: 0.85rem; font-family: 'Syne', sans-serif;">
         <span style="color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 0.3rem;">
-          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 6px var(--blue);"></span>
-          <span id="mobileHeaderUsername">admin</span> (<span id="mobileHeaderRole" style="color: var(--blue); font-weight: bold;">ADMIN</span>)
+          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.6); box-shadow: none;"></span>
+          <span id="mobileHeaderUsername">guest</span> (<span id="mobileHeaderRole" style="color: rgba(255,255,255,0.6); font-weight: bold;">VIEWER</span>)
         </span>
       </div>
     </li>
@@ -1681,8 +1681,8 @@ footer{
   </ul>
   <div id="userProfileHeader" style="display: flex; align-items: center; gap: 0.8rem; margin-right: 1.5rem; font-size: 0.8rem; font-family: 'Syne', sans-serif;">
     <span style="color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 0.3rem;">
-      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 6px var(--blue);"></span>
-      <span id="headerUsername">admin</span> (<span id="headerRole" style="color: var(--blue); font-weight: bold;">ADMIN</span>)
+      <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.6); box-shadow: none;"></span>
+      <span id="headerUsername">guest</span> (<span id="headerRole" style="color: rgba(255,255,255,0.6); font-weight: bold;">VIEWER</span>)
     </span>
   </div>
   <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request Quote →</button>
@@ -2873,7 +2873,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // Scada Portal Modal Dialog & Control Logic
 let scadaModal = null;
-let currentUser = { username: "admin", role: "ADMIN" };
+let currentUser = { username: "guest", role: "VIEWER" };
 let isFallback = false;
 let eventSource = null;
 let tempHistory = [];
