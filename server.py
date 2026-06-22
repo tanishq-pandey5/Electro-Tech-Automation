@@ -7,10 +7,64 @@ import random
 import threading
 import sqlite3
 import smtplib
+import hashlib
 from email.mime.text import MIMEText
 from urllib.parse import urlparse
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import socketserver
+
+def load_env(env_path='.env'):
+    if os.path.exists(env_path):
+        with open(env_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                if '=' in line:
+                    key, val = line.split('=', 1)
+                    key = key.strip()
+                    val = val.strip()
+                    if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                        val = val[1:-1]
+                    if key not in os.environ:
+                        os.environ[key] = val
+
+def hash_password(password):
+    salt = os.urandom(16)
+    hash_bytes = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+    return f"{salt.hex()}:{hash_bytes.hex()}"
+
+def verify_password(stored_password_hash, password_to_check):
+    if not stored_password_hash or ":" not in stored_password_hash:
+        return stored_password_hash == password_to_check
+    try:
+        salt_hex, hash_hex = stored_password_hash.split(':', 1)
+        salt = bytes.fromhex(salt_hex)
+        hash_bytes = bytes.fromhex(hash_hex)
+        check_hash = hashlib.pbkdf2_hmac('sha256', password_to_check.encode('utf-8'), salt, 100000)
+        return hashlib.compare_digest(hash_bytes, check_hash)
+    except Exception:
+        return False
+
+def override_config_with_env(cfg_dict):
+    env_mapping = {
+        "smtp_host": "SMTP_HOST",
+        "smtp_port": "SMTP_PORT",
+        "smtp_encryption": "SMTP_ENCRYPTION",
+        "smtp_user": "SMTP_USER",
+        "smtp_pass": "SMTP_PASS",
+        "smtp_receiver": "SMTP_RECEIVER",
+        "email_enabled": "EMAIL_ENABLED",
+        "email_min_severity": "EMAIL_MIN_SEVERITY",
+        "google_client_id": "GOOGLE_CLIENT_ID",
+        "allowed_google_emails": "ALLOWED_GOOGLE_EMAILS"
+    }
+    for config_key, env_key in env_mapping.items():
+        env_val = os.getenv(env_key)
+        if env_val is not None:
+            cfg_dict[config_key] = env_val
+    return cfg_dict
+
 
 class ThreadedHTTPServer(socketserver.ThreadingMixIn, HTTPServer):
     daemon_threads = True
@@ -123,7 +177,20 @@ def init_db():
         ("viewer", "view123", "VIEWER")
     ]
     for u, p, r in default_users:
-        cursor.execute("INSERT OR IGNORE INTO users (username, password, role) VALUES (?, ?, ?)", (u, p, r))
+        cursor.execute("SELECT password FROM users WHERE username = ?", (u,))
+        row = cursor.fetchone()
+        if not row:
+            cursor.execute("INSERT INTO users (username, password, role) VALUES (?, ?, ?)", (u, hash_password(p), r))
+            
+    # Migrate any existing plaintext passwords in database to secure hashes
+    cursor.execute("SELECT username, password FROM users")
+    all_users = cursor.fetchall()
+    for user in all_users:
+        uname = user["username"]
+        pwd = user["password"]
+        if pwd and ":" not in pwd:
+            hashed_pwd = hash_password(pwd)
+            cursor.execute("UPDATE users SET password = ? WHERE username = ?", (hashed_pwd, uname))
     
     # Insert Default configurations
     default_configs = {
@@ -284,9 +351,9 @@ def send_email_notification(severity, title, message):
             rows = cursor.fetchall()
             conn.close()
             
-            cfg = {row["key"]: row["value"] for row in rows}
+            cfg = override_config_with_env({row["key"]: row["value"] for row in rows})
             
-            if cfg.get("email_enabled") != "1":
+            if str(cfg.get("email_enabled")) != "1":
                 return
                 
             min_severity = cfg.get("email_min_severity", "CRITICAL")
@@ -606,7 +673,7 @@ class SCADAHandler(SimpleHTTPRequestHandler):
             rows = cursor.fetchall()
             conn.close()
             
-            cfg = {row["key"]: row["value"] for row in rows}
+            cfg = override_config_with_env({row["key"]: row["value"] for row in rows})
             
             # Mask SMTP password for security
             if cfg.get("smtp_pass"):
@@ -676,12 +743,14 @@ class SCADAHandler(SimpleHTTPRequestHandler):
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             
-            conn = get_db()
-            cursor = conn.cursor()
-            cursor.execute("SELECT value FROM configs WHERE key = 'google_client_id'")
-            row = cursor.fetchone()
-            conn.close()
-            client_id = row["value"] if row else ""
+            client_id = os.getenv("GOOGLE_CLIENT_ID")
+            if client_id is None:
+                conn = get_db()
+                cursor = conn.cursor()
+                cursor.execute("SELECT value FROM configs WHERE key = 'google_client_id'")
+                row = cursor.fetchone()
+                conn.close()
+                client_id = row["value"] if row else ""
             self.wfile.write(json.dumps({"client_id": client_id}).encode("utf-8"))
             return
             
@@ -963,13 +1032,18 @@ class SCADAHandler(SimpleHTTPRequestHandler):
                 config_dict[key] = payload.get(key, "")
                 
             if config_dict.get("smtp_pass") == "********":
-                conn = get_db()
-                cursor = conn.cursor()
-                cursor.execute("SELECT value FROM configs WHERE key = 'smtp_pass'")
-                row = cursor.fetchone()
-                conn.close()
-                if row:
-                    config_dict["smtp_pass"] = row["value"]
+                env_pass = os.getenv("SMTP_PASS")
+                if env_pass:
+                    config_dict["smtp_pass"] = env_pass
+                else:
+                    conn = get_db()
+                    cursor = conn.cursor()
+                    cursor.execute("SELECT value FROM configs WHERE key = 'smtp_pass'")
+                    row = cursor.fetchone()
+                    conn.close()
+                    if row:
+                        config_dict["smtp_pass"] = row["value"]
+            config_dict = override_config_with_env(config_dict)
                     
             try:
                 subject = "[SCADA TEST] SMTP Connection Test"
@@ -1011,11 +1085,11 @@ class SCADAHandler(SimpleHTTPRequestHandler):
             
             conn = get_db()
             cursor = conn.cursor()
-            cursor.execute("SELECT role FROM users WHERE username = ? AND password = ?", (username, password))
+            cursor.execute("SELECT password, role FROM users WHERE username = ?", (username,))
             row = cursor.fetchone()
             conn.close()
             
-            if row:
+            if row and verify_password(row["password"], password):
                 role = row["role"]
                 add_event(f"User '{username}' logged in successfully as {role}.")
                 response = {"success": True, "username": username, "role": role}
@@ -1067,7 +1141,8 @@ class SCADAHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(json.dumps({"success": False, "message": "Invalid role."}).encode("utf-8"))
                 return
                 
-            db_write("INSERT OR REPLACE INTO users (username, password, role) VALUES (?, ?, ?)", (username, password, role))
+            hashed_p = hash_password(password)
+            db_write("INSERT OR REPLACE INTO users (username, password, role) VALUES (?, ?, ?)", (username, hashed_p, role))
             add_event(f"User account '{username}' created/updated with role {role}.")
             
             self.send_response(200)
@@ -1148,11 +1223,13 @@ class SCADAHandler(SimpleHTTPRequestHandler):
             name = verification["name"]
             
             # Check authorization list
+            allowed_emails_str = os.getenv("ALLOWED_GOOGLE_EMAILS")
             conn = get_db()
             cursor = conn.cursor()
-            cursor.execute("SELECT value FROM configs WHERE key = 'allowed_google_emails'")
-            row = cursor.fetchone()
-            allowed_emails_str = row["value"] if row else ""
+            if allowed_emails_str is None:
+                cursor.execute("SELECT value FROM configs WHERE key = 'allowed_google_emails'")
+                row = cursor.fetchone()
+                allowed_emails_str = row["value"] if row else ""
             
             # Also check users table
             cursor.execute("SELECT role FROM users WHERE username = ? AND role = 'ADMIN'", (email,))
@@ -1332,6 +1409,7 @@ class SCADAHandler(SimpleHTTPRequestHandler):
 # Server Bootstrapper
 def start_server(port=8000):
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    load_env()
     
     # 1. Initialize SQLite Database Tables
     init_db()
